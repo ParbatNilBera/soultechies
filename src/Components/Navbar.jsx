@@ -1,5 +1,10 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import { Link } from "react-router-dom";
 
 const PRIMARY = "#7c3bed"; // primary color
@@ -15,52 +20,136 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const scrollToSection = (id) => {
+    setOpen(false);
+
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    const navbarOffset = 90; // adjust if needed
+
+    const y =
+      el.getBoundingClientRect().top + window.pageYOffset - navbarOffset;
+
+    window.scrollTo({
+      top: y,
+      behavior: "smooth",
+    });
+  };
+
+
   return (
-    <nav className="fixed top-0 w-full z-50 flex justify-center rounded-full mt-1">
+    <nav className="fixed top-0 w-full z-50 flex justify-around rounded-full mt-1 px-1">
       <motion.div
         animate={{
           width: scrolled ? "80%" : "100%",
-          borderRadius: scrolled ? "40px" : "0px",
-          paddingTop: scrolled ? "10px" : "16px",
-          paddingBottom: scrolled ? "10px" : "16px",
+          borderRadius: scrolled ? "40px" : "150px 100px 777px 150px",
+          paddingTop: scrolled ? "12px" : "16px",
+          paddingBottom: scrolled ? "12px" : "16px",
 
-          // 👉 Fully solid primary color (no transparency)
-          backgroundColor: PRIMARY,
+          backgroundImage: scrolled
+            ? "linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.02))"
+            : "linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0))",
 
-          // 👉 No blur
-          backdropFilter: "none",
+          // ✅ Glass after scroll
+          backgroundColor: scrolled ? "rgba(124, 59, 237, 0.55)" : PRIMARY,
+
+          backdropFilter: scrolled ? "blur(16px)" : "none",
+          WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
+
+          border: scrolled ? "1px solid rgba(255,255,255,0.25)" : "none",
 
           boxShadow: scrolled
-            ? "0 6px 20px rgba(0,0,0,0.25)"
-            : "0px 0px 0px rgba(0,0,0,0)",
+            ? "inset 0 1px 1px rgba(255,255,255,0.25), 0 16px 45px rgba(0,0,0,0.35)"
+            : "inset 0 1px 1px rgba(255,255,255,0.18), 0 6px 20px rgba(0,0,0,0.18)",
 
           y: scrolled ? -4 : 0,
+          scale: scrolled ? 0.97 : 1,
         }}
-        transition={{ duration: 0.35, ease: "easeOut" }}
+        transition={{
+          type: "spring",
+          stiffness: 90,
+          damping: 26,
+          mass: 1.1,
+        }}
         className="px-6"
       >
         {/* Navbar content */}
-        <div className="flex justify-between items-center p-1">
+        <div className="flex justify-between items-center p-3">
           <h1
-            className="text-xl md:text-2xl font-semibold"
-            style={{ color: PRIMARY_TEXT }}
+            className="text-xl md:text-3xl font-semibold tracking-wide"
+            style={{
+              color: PRIMARY_TEXT,
+              textShadow: "0 6px 6px rgba(0,0,0,0.50)",
+            }}
           >
             SoulTechies
           </h1>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex gap-8" style={{ color: PRIMARY_TEXT }}>
-            {["Home", "Services", "Projects"].map((item) => (
-              <Link
-                key={item}
-                to={`/${item.toLowerCase()}`}
-                className="transition"
-                style={{ color: PRIMARY_TEXT }}
-                onMouseEnter={(e) => (e.target.style.opacity = "0.75")}
-                onMouseLeave={(e) => (e.target.style.opacity = "1")}
-              >
-                {item}
-              </Link>
+
+          <div
+            className="relative transition hidden md:flex gap-8 "
+            style={{ color: PRIMARY_TEXT }}
+          >
+            {[
+              { label: "Home", id: "home" },
+              { label: "Reviews", id: "reviews" },
+              { label: "Services", id: "services" },
+            ].map((item) => (
+                <motion.button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  whileHover={{
+                    y: -2,
+                    scale: 1.10,
+                  }}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 18,
+                    mass: 0.5,
+                  }}
+                  className="relative bg-transparent font-medium tracking-wide"
+                  style={{
+                    color: PRIMARY_TEXT,
+                    textShadow: "0 1px 4px rgba(0,0,0,0.25)",
+                  }}
+                >
+                  {item.label}
+
+                  {/* soft underline */}
+                  <motion.span
+                    className="absolute left-0 -bottom-1 w-full h-[2px] rounded-full bg-white"
+                    initial={{ scaleX: 0, opacity: 0 }}
+                    whileHover={{ scaleX: 1, opacity: 1 }}
+                    transition={{ duration: 0.25, ease: "easeOut" }}
+                    style={{ originX: 0 }}
+                  />
+                </motion.button>
+
+            //   <motion.button
+            //     key={item.id}
+            //     onClick={() => scrollToSection(item.id)}
+            //     className="relative bg-transparent"
+            //     style={{ color: PRIMARY_TEXT }}
+            //     initial="rest"
+            //     whileHover="hover"
+            //     animate="rest"
+            //   >
+            //     {item.label}
+
+            //     <motion.span
+            //       className="absolute left-0 -bottom-1 w-full h-[2px] rounded-full bg-white"
+            //       variants={{
+            //         rest: { scaleX: 0, opacity: 0 },
+            //         hover: { scaleX: 1, opacity: 1 },
+            //       }}
+            //       transition={{ duration: 0.25, ease: "easeOut" }}
+            //       style={{ originX: 0 }}
+            //     />
+            //   </motion.button>
             ))}
           </div>
 
@@ -113,22 +202,24 @@ const Navbar = () => {
               backgroundColor: PRIMARY, // solid primary color (no transparency)
             }}
           >
-            {["Home", "Services", "Projects"].map((item) => (
-              <Link
-                key={item}
-                to={`/${item.toLowerCase()}`}
-                onClick={() => setOpen(false)}
-                className="block text-lg px-6 py-3 rounded-xl transition"
-                style={{ color: PRIMARY_TEXT }}
-                onMouseEnter={(e) =>
-                  (e.target.style.backgroundColor = "rgba(255,255,255,0.1)")
-                }
-                onMouseLeave={(e) =>
-                  (e.target.style.backgroundColor = "transparent")
-                }
+            {[
+              { label: "Home", id: "home" },
+              { label: "Services", id: "services" },
+              { label: "Projects", id: "projects" },
+            ].map((item) => (
+              <motion.button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                whileHover={{ x: 4 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                className="block w-full text-left text-lg px-6 py-3 rounded-xl"
+                style={{
+                  color: PRIMARY_TEXT,
+                }}
               >
-                {item}
-              </Link>
+                {item.label}
+              </motion.button>
             ))}
           </motion.div>
         )}

@@ -133,6 +133,10 @@
 
 // export default siteData;
 
+import goputoLogo from "../assets/images/goputo.jpg";
+import HopzyLogo from "../assets/images/hopzy.png";
+import SolonoLogo from "../assets/images/solono.png";
+
 const siteData = {
   brand: {
     name: "SoulTech",
@@ -171,37 +175,25 @@ const siteData = {
     },
   ],
 
+  
+
   clients: [
     {
       id: 1,
-      name: "TechCorp",
-      logo: "https://via.placeholder.com/120x60/4a5a4a/ffffff?text=TechCorp",
+      name: "Goputo",
+      logo: goputoLogo,
     },
     {
       id: 2,
-      name: "InnovateLab",
-      logo: "https://via.placeholder.com/120x60/4a5a4a/ffffff?text=InnovateLab",
+      name: "Hopzy",
+      logo: HopzyLogo,
     },
     {
       id: 3,
-      name: "StartupHub",
-      logo: "https://via.placeholder.com/120x60/4a5a4a/ffffff?text=StartupHub",
+      name: "Solono",
+      logo: SolonoLogo,
     },
-    {
-      id: 4,
-      name: "DevSphere",
-      logo: "https://via.placeholder.com/120x60/4a5a4a/ffffff?text=DevSphere",
-    },
-    {
-      id: 5,
-      name: "CodeMasters",
-      logo: "https://via.placeholder.com/120x60/4a5a4a/ffffff?text=CodeMasters",
-    },
-    {
-      id: 6,
-      name: "AppVenture",
-      logo: "https://via.placeholder.com/120x60/4a5a4a/ffffff?text=AppVenture",
-    },
+    
   ],
 
   reviews: [
@@ -227,8 +219,16 @@ const siteData = {
       company: "InnovateLab",
       logo: "https://via.placeholder.com/50/4a5a4a/ffffff?text=IL",
       rating: 5,
-      text: "Outstanding service! They modified our existing platform seamlessly and added features we didn't even know we needed.",
+      text: "Outstanding service! They modified our existing platform seamlessly and added features we didn't even know we needed.jhgasd",
     },
+    {
+      id: 4,
+      name: "David Lee",
+      company: "DevSphere", 
+      logo: "https://via.placeholder.com/50/4a5a4a/ffffff?text=DS",
+      rating: 5,
+      text: "Working with SoulTech was a game-changer for our project. Their team is highly skilled and delivered beyond our expectations.",  
+    }
   ],
 
   contact: {

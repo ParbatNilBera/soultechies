@@ -295,10 +295,10 @@ const DotGrid = ({
 
 export default function HeroSection() {
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-slate-50 via-violet-50 to-slate-50 overflow-hidden flex items-center justify-center">
+    <div id="home" className="relative min-h-screen bg-gradient-to-br from-slate-50 via-violet-50 to-slate-50 overflow-hidden flex items-center justify-center">
       {/* Interactive Dot Grid Background */}
       <DotGrid
-        dotSize={8}
+        dotSize={9}
         gap={26}
         baseColor="#e3defa"
         activeColor="#8b5cf6"

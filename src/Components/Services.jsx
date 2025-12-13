@@ -114,7 +114,7 @@ const ServicesSection = () => {
   }, [siteData.services.length]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-violet-50 via-white to-violet-100 flex items-center justify-center p-8 md:p-20 relative overflow-hidden">
+    <div  id="services" className="min-h-screen bg-gradient-to-br from-violet-50 via-white to-violet-100 flex items-center justify-center p-8 md:p-20 relative overflow-hidden">
       {/* Decorative background elements with smooth animations */}
       <motion.div
         className="absolute top-20 left-20 w-72 h-72 bg-violet-200 rounded-full mix-blend-multiply filter blur-xl opacity-30"
