@@ -5,6 +5,21 @@
 
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --color-primary:#7c3bed;
+    --color-primary-text:#000000;
+    --color-primary-background: #ffffff;
+
+    /* dark mode */
+        --color-primary-dark: #5a189a;
+        --color-primary-text-dark: #ffffff;
+        --color-primary-background-dark: #000000;
+}
+
+
+
 
 
 /* ------------------------------------------
@@ -19,9 +34,9 @@
     --color-bg: #fcfcfd;
     --color-text: #190d26;
 
-    /* PRIMARY */
-    --color-primary: #7c3bed;
-    --color-primary-text: #ffffff;
+    
+
+    
 
     /* SECONDARY */
     --color-secondary: #f2f0f5;
@@ -43,6 +58,8 @@
     /* POPOVER */
     --color-popover: #faf9fb;
     --color-popover-text: #190d26;
+
+    
 
     /* EXTRA PALETTE (from top purple palette images) */
     --purple-1: #6c1fb5;
