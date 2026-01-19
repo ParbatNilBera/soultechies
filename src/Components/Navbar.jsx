@@ -1,68 +1,217 @@
-import { useState, useEffect } from "react";
-import {
-  motion,
-  AnimatePresence,
-  useScroll,
-  useTransform,
-} from "framer-motion";
-import { Link } from "react-router-dom";
 
-const PRIMARY = "#7c3bed"; // primary color
-const PRIMARY_TEXT = "#ffffff";
+
+
+// import { useState, useEffect } from "react";
+// import { motion, AnimatePresence } from "framer-motion";
+// import { Link } from "react-router-dom";
+// import logo from "../assets/images/loogo.png";
+
+
+// const Navbar = () => {
+//   const [open, setOpen] = useState(false);
+//   const [scrolled, setScrolled] = useState(false);
+
+//   useEffect(() => {
+//     const onScroll = () => setScrolled(window.scrollY > 40);
+//     window.addEventListener("scroll", onScroll);
+//     return () => window.removeEventListener("scroll", onScroll);
+//   }, []);
+
+//   const scrollToSection = (id) => {
+//     setOpen(false);
+//     const el = document.getElementById(id);
+//     if (!el) return;
+
+//     const offset = 90;
+//     const y = el.getBoundingClientRect().top + window.pageYOffset - offset;
+
+//     window.scrollTo({ top: y, behavior: "smooth" });
+//   };
+
+//   return (
+//     <nav className="fixed top-0 w-full z-50 flex justify-around mt-1 px-1">
+//       <motion.div
+//         animate={{
+//           width: scrolled ? "80%" : "100%",
+//           borderRadius: scrolled ? "40px" : "150px 100px 777px 150px",
+//           paddingTop: scrolled ? "12px" : "16px",
+//           paddingBottom: scrolled ? "12px" : "16px",
+//           y: scrolled ? -4 : 0,
+//           scale: scrolled ? 0.97 : 1,
+//         }}
+//         transition={{
+//           type: "spring",
+//           stiffness: 90,
+//           damping: 26,
+//           mass: 1.1,
+//         }}
+//         className={`px-6 navbar ${scrolled ? "navbar-scrolled" : ""}`}
+//       >
+//         {/* Navbar content */}
+//         <div className="flex justify-between items-center p-3">
+//           {/* Logo */}
+//           {/* <h1 className="navbar-text text-xl md:text-3xl font-semibold tracking-wide">
+//             SoulTechies
+//           </h1> */}
+
+//           <Link to="/" className="flex items-center gap-2">
+//             <img
+//               src={logo}
+//               alt="SoulTechies Logo"
+//               className="h-14 w-14 md:h-12 md:w-12 object-contain"
+//             />
+//             <span className="navbar-text text-xl md:text-3xl font-semibold tracking-wide">
+//               SoulTechies
+//             </span>
+//           </Link>
+
+//           {/* Desktop Menu */}
+//           <div className="hidden md:flex gap-8 navbar-text">
+//             {[
+//               { label: "Home", id: "home" },
+//               { label: "Reviews", id: "reviews" },
+//               { label: "Services", id: "services" },
+//             ].map((item) => (
+//               <motion.button
+//                 key={item.id}
+//                 onClick={() => scrollToSection(item.id)}
+//                 whileHover={{ y: -2, scale: 1.1 }}
+//                 whileTap={{ scale: 0.97 }}
+//                 transition={{
+//                   type: "spring",
+//                   stiffness: 300,
+//                   damping: 18,
+//                 }}
+//                 className="relative bg-transparent font-medium tracking-wide"
+//               >
+//                 {item.label}
+
+//                 <motion.span
+//                   className="navbar-underline absolute left-0 -bottom-1 w-full h-[2px] rounded-full"
+//                   initial={{ scaleX: 0, opacity: 0 }}
+//                   whileHover={{ scaleX: 1, opacity: 1 }}
+//                   transition={{ duration: 0.25 }}
+//                   style={{ originX: 0 }}
+//                 />
+//               </motion.button>
+//             ))}
+//           </div>
+
+//           {/* Mobile Menu Button */}
+//           <button
+//             className="md:hidden navbar-text"
+//             onClick={() => setOpen(!open)}
+//           >
+//             {!open ? (
+//               <svg width="26" height="26" viewBox="0 0 24 24">
+//                 <path
+//                   d="M3 6h18M3 12h18M3 18h18"
+//                   stroke="currentColor"
+//                   strokeWidth="2"
+//                   strokeLinecap="round"
+//                 />
+//               </svg>
+//             ) : (
+//               <svg width="26" height="26" viewBox="0 0 24 24">
+//                 <path
+//                   d="M6 6l12 12M6 18L18 6"
+//                   stroke="currentColor"
+//                   strokeWidth="2"
+//                   strokeLinecap="round"
+//                 />
+//               </svg>
+//             )}
+//           </button>
+//         </div>
+//       </motion.div>
+
+//       {/* Mobile Menu */}
+//       <AnimatePresence>
+//         {open && (
+//           <motion.div
+//             initial={{ opacity: 0, y: -8 }}
+//             animate={{ opacity: 1, y: 0 }}
+//             exit={{ opacity: 0, y: -8 }}
+//             className="absolute top-20 w-[90%] rounded-2xl py-4 md:hidden shadow-xl bg-primary"
+//           >
+//             {[
+//               { label: "Home", id: "home" },
+//               { label: "Services", id: "services" },
+//               { label: "Projects", id: "projects" },
+//             ].map((item) => (
+//               <motion.button
+//                 key={item.id}
+//                 onClick={() => scrollToSection(item.id)}
+//                 whileHover={{ x: 6 }}
+//                 whileTap={{ scale: 0.97 }}
+//                 className="block w-full text-left text-lg px-6 py-3 rounded-xl text-white"
+//               >
+//                 {item.label}
+//               </motion.button>
+//             ))}
+//           </motion.div>
+//         )}
+//       </AnimatePresence>
+//     </nav>
+//   );
+// };
+
+// export default Navbar;
+
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
+import logo from "../assets/images/loogo.png";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
 
+  /* ---------------- SCROLL ---------------- */
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  /* ---------------- DARK MODE INIT ---------------- */
+  useEffect(() => {
+    const theme = localStorage.getItem("theme");
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+      setDarkMode(true);
+    }
+  }, []);
+
+  /* ---------------- TOGGLE DARK MODE ---------------- */
+  const toggleDarkMode = () => {
+    const html = document.documentElement;
+    const isDark = html.classList.contains("dark");
+
+    html.classList.toggle("dark");
+    localStorage.setItem("theme", isDark ? "light" : "dark");
+    setDarkMode(!isDark);
+  };
+
   const scrollToSection = (id) => {
     setOpen(false);
-
     const el = document.getElementById(id);
     if (!el) return;
 
-    const navbarOffset = 90; // adjust if needed
-
-    const y =
-      el.getBoundingClientRect().top + window.pageYOffset - navbarOffset;
-
-    window.scrollTo({
-      top: y,
-      behavior: "smooth",
-    });
+    const offset = 90;
+    const y = el.getBoundingClientRect().top + window.pageYOffset - offset;
+    window.scrollTo({ top: y, behavior: "smooth" });
   };
 
-
   return (
-    <nav className="fixed top-0 w-full z-50 flex justify-around rounded-full mt-1 px-1">
+    <nav className="fixed top-0 w-full z-50 flex justify-around mt-1 px-1">
       <motion.div
         animate={{
           width: scrolled ? "80%" : "100%",
           borderRadius: scrolled ? "40px" : "150px 100px 777px 150px",
           paddingTop: scrolled ? "12px" : "16px",
           paddingBottom: scrolled ? "12px" : "16px",
-
-          backgroundImage: scrolled
-            ? "linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.02))"
-            : "linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0))",
-
-          // ✅ Glass after scroll
-          backgroundColor: scrolled ? "rgba(124, 59, 237, 0.55)" : PRIMARY,
-
-          backdropFilter: scrolled ? "blur(16px)" : "none",
-          WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
-
-          border: scrolled ? "1px solid rgba(255,255,255,0.25)" : "none",
-
-          boxShadow: scrolled
-            ? "inset 0 1px 1px rgba(255,255,255,0.25), 0 16px 45px rgba(0,0,0,0.35)"
-            : "inset 0 1px 1px rgba(255,255,255,0.18), 0 6px 20px rgba(0,0,0,0.18)",
-
           y: scrolled ? -4 : 0,
           scale: scrolled ? 0.97 : 1,
         }}
@@ -72,153 +221,124 @@ const Navbar = () => {
           damping: 26,
           mass: 1.1,
         }}
-        className="px-6"
+        className={`px-6 navbar ${scrolled ? "navbar-scrolled" : ""}`}
       >
-        {/* Navbar content */}
         <div className="flex justify-between items-center p-3">
-          <h1
-            className="text-xl md:text-3xl font-semibold tracking-wide"
-            style={{
-              color: PRIMARY_TEXT,
-              textShadow: "0 6px 6px rgba(0,0,0,0.50)",
-            }}
-          >
-            SoulTechies
-          </h1>
+          {/* LOGO */}
+          <Link to="/" className="flex items-center gap-2">
+            <img src={logo} alt="SoulTechies Logo" className="h-14 w-14" />
+            <span className="navbar-text text-xl md:text-3xl font-semibold">
+              SoulTechies
+            </span>
+          </Link>
 
-          {/* Desktop Menu */}
-
-          <div
-            className="relative transition hidden md:flex gap-8 "
-            style={{ color: PRIMARY_TEXT }}
-          >
+          {/* DESKTOP MENU */}
+          <div className="hidden md:flex gap-8 navbar-text items-center">
             {[
               { label: "Home", id: "home" },
               { label: "Reviews", id: "reviews" },
               { label: "Services", id: "services" },
             ].map((item) => (
-                <motion.button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  whileHover={{
-                    y: -2,
-                    scale: 1.10,
-                  }}
-                  whileTap={{ scale: 0.97 }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 18,
-                    mass: 0.5,
-                  }}
-                  className="relative bg-transparent font-medium tracking-wide"
-                  style={{
-                    color: PRIMARY_TEXT,
-                    textShadow: "0 1px 4px rgba(0,0,0,0.25)",
-                  }}
-                >
-                  {item.label}
-
-                  {/* soft underline */}
-                  <motion.span
-                    className="absolute left-0 -bottom-1 w-full h-[2px] rounded-full bg-white"
-                    initial={{ scaleX: 0, opacity: 0 }}
-                    whileHover={{ scaleX: 1, opacity: 1 }}
-                    transition={{ duration: 0.25, ease: "easeOut" }}
-                    style={{ originX: 0 }}
-                  />
-                </motion.button>
-
-            //   <motion.button
-            //     key={item.id}
-            //     onClick={() => scrollToSection(item.id)}
-            //     className="relative bg-transparent"
-            //     style={{ color: PRIMARY_TEXT }}
-            //     initial="rest"
-            //     whileHover="hover"
-            //     animate="rest"
-            //   >
-            //     {item.label}
-
-            //     <motion.span
-            //       className="absolute left-0 -bottom-1 w-full h-[2px] rounded-full bg-white"
-            //       variants={{
-            //         rest: { scaleX: 0, opacity: 0 },
-            //         hover: { scaleX: 1, opacity: 1 },
-            //       }}
-            //       transition={{ duration: 0.25, ease: "easeOut" }}
-            //       style={{ originX: 0 }}
-            //     />
-            //   </motion.button>
+              <motion.button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                whileHover={{ y: -2, scale: 1.1 }}
+                whileTap={{ scale: 0.97 }}
+                className="relative font-medium"
+              >
+                {item.label}
+                <motion.span
+                  className="navbar-underline absolute left-0 -bottom-1 w-full h-[2px]"
+                  initial={{ scaleX: 0 }}
+                  whileHover={{ scaleX: 1 }}
+                  style={{ originX: 0 }}
+                />
+              </motion.button>
             ))}
+
+            {/* 🌞 🌙 ANIMATED TOGGLE */}
+            <button
+              onClick={toggleDarkMode}
+              className="ml-4 w-11 h-11 rounded-full flex items-center justify-center
+                         bg-white/20 hover:bg-white/30 transition"
+            >
+              <AnimatePresence mode="wait">
+                {!darkMode ? (
+                  <motion.span
+                    key="sun"
+                    initial={{ rotate: -90, scale: 0 }}
+                    animate={{ rotate: 0, scale: 1 }}
+                    exit={{ rotate: 90, scale: 0 }}
+                    transition={{ duration: 0.35 }}
+                    className="text-xl"
+                  >
+                    🌞
+                  </motion.span>
+                ) : (
+                  <motion.span
+                    key="moon"
+                    initial={{ rotate: 90, scale: 0 }}
+                    animate={{ rotate: 0, scale: 1 }}
+                    exit={{ rotate: -90, scale: 0 }}
+                    transition={{ duration: 0.35 }}
+                    className="text-xl"
+                  >
+                    🌙
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            </button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden"
-            onClick={() => setOpen(!open)}
-            style={{ color: PRIMARY_TEXT }}
-          >
-            {!open ? (
-              <svg
-                width="26"
-                height="26"
-                viewBox="0 0 24 24"
-                stroke={PRIMARY_TEXT}
-              >
-                <path
-                  d="M3 6h18M3 12h18M3 18h18"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-              </svg>
-            ) : (
-              <svg
-                width="26"
-                height="26"
-                viewBox="0 0 24 24"
-                stroke={PRIMARY_TEXT}
-              >
-                <path
-                  d="M6 6l12 12M6 18L18 6"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-              </svg>
-            )}
-          </button>
+          {/* MOBILE BUTTONS */}
+          <div className="md:hidden flex items-center gap-3 navbar-text">
+            <button onClick={toggleDarkMode} className="text-xl">
+              <AnimatePresence mode="wait">
+                {!darkMode ? (
+                  <motion.span
+                    key="sun-m"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    exit={{ scale: 0 }}
+                  >
+                    🌞
+                  </motion.span>
+                ) : (
+                  <motion.span
+                    key="moon-m"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    exit={{ scale: 0 }}
+                  >
+                    🌙
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            </button>
+
+            <button onClick={() => setOpen(!open)}>{!open ? "☰" : "✕"}</button>
+          </div>
         </div>
       </motion.div>
 
-      {/* Mobile Dropdown */}
+      {/* MOBILE MENU */}
       <AnimatePresence>
         {open && (
           <motion.div
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
-            className="absolute top-20 w-[90%] rounded-2xl py-4 md:hidden shadow-xl"
-            style={{
-              backgroundColor: PRIMARY, // solid primary color (no transparency)
-            }}
+            className="absolute top-20 w-[90%] rounded-2xl py-4 md:hidden
+                       shadow-xl bg-primary"
           >
-            {[
-              { label: "Home", id: "home" },
-              { label: "Services", id: "services" },
-              { label: "Projects", id: "projects" },
-            ].map((item) => (
+            {["Home", "Services", "Projects"].map((item) => (
               <motion.button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                whileHover={{ x: 4 }}
-                whileTap={{ scale: 0.98 }}
-                transition={{ type: "spring", stiffness: 260, damping: 20 }}
-                className="block w-full text-left text-lg px-6 py-3 rounded-xl"
-                style={{
-                  color: PRIMARY_TEXT,
-                }}
+                key={item}
+                onClick={() => scrollToSection(item.toLowerCase())}
+                whileHover={{ x: 6 }}
+                className="block w-full text-left px-6 py-3 text-white"
               >
-                {item.label}
+                {item}
               </motion.button>
             ))}
           </motion.div>

@@ -7,36 +7,44 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* ------------------------------------------
+   TAILWIND THEME TOKENS
+------------------------------------------- */
 @theme {
-    --color-primary:#7c3bed;
-    --color-primary-text:#000000;
+    /* BRAND */
+    --color-primary: #7c3bed;
+    --color-primary-text: #ffffff;
     --color-primary-background: #ffffff;
 
-    /* dark mode */
-        --color-primary-dark: #5a189a;
-        --color-primary-text-dark: #ffffff;
-        --color-primary-background-dark: #000000;
+    /* DARK MODE */
+    --color-primary-dark: #5a189a;
+    --color-primary-text-dark: #ffffff;
+    --color-primary-background-dark: #000000;
+
+    /* NAVBAR */
+    --navbar-bg: var(--color-primary);
+    --navbar-bg-scrolled: rgba(124, 59, 237, 0.55);
+    --navbar-text: var(--color-primary-text);
+    --navbar-border: rgba(255, 255, 255, 0.25);
+
+    --navbar-gradient:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0));
+
+    --navbar-gradient-scrolled:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.02));
 }
-
-
-
-
 
 /* ------------------------------------------
    ROOT THEME VARIABLES
 ------------------------------------------- */
 :root {
-    /* FONT FAMILY */
+    /* FONTS */
     --font-sans: "Poppins", sans-serif;
     --font-serif: "Roboto", serif;
 
-    /* BASE COLORS */
+    /* BASE */
     --color-bg: #fcfcfd;
     --color-text: #190d26;
-
-    
-
-    
 
     /* SECONDARY */
     --color-secondary: #f2f0f5;
@@ -46,34 +54,84 @@
     --color-accent: #f0e9fb;
     --color-accent-text: #5914d2;
 
-    /* BORDER & INPUT */
+    /* BORDER */
     --color-border: #e6e0eb;
-    --color-input: #e6e0eb;
     --color-focus-ring: #7c3bed;
 
     /* CARD */
     --color-card: #faf9fb;
     --color-card-text: #190d26;
 
-    /* POPOVER */
-    --color-popover: #faf9fb;
-    --color-popover-text: #190d26;
-
-    
-
-    /* EXTRA PALETTE (from top purple palette images) */
+    /* PURPLE PALETTE */
     --purple-1: #6c1fb5;
     --purple-2: #5a189a;
     --purple-3: #9d4bff;
     --purple-4: #7a3ecc;
+
+    /* GLASS */
+    --glass-blur: blur(16px);
+
+    /* SHADOWS */
+    --shadow-navbar:
+        inset 0 1px 1px rgba(255, 255, 255, 0.18),
+        0 6px 20px rgba(0, 0, 0, 0.18);
+
+    --shadow-navbar-scrolled:
+        inset 0 1px 1px rgba(255, 255, 255, 0.25),
+        0 16px 45px rgba(0, 0, 0, 0.35);
 }
 
 /* ------------------------------------------
-   GLOBAL RESET + BASE
+   GLOBAL BASE
+------------------------------------------- */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-sans);
+    background: var(--color-bg);
+    color: var(--color-text);
+    overflow-x: hidden;
+}
+
+/* ------------------------------------------
+   NAVBAR UTILITIES (IMPORTANT)
 ------------------------------------------- */
 
+/* Default navbar */
+.navbar {
+    background: var(--navbar-bg);
+    color: var(--navbar-text);
+    box-shadow: var(--shadow-navbar);
+    background-image: var(--navbar-gradient);
+}
 
-/* Optional utility classes */
+/* Navbar after scroll */
+.navbar-scrolled {
+    background-color: var(--navbar-bg-scrolled);
+    background-image: var(--navbar-gradient-scrolled);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--navbar-border);
+    box-shadow: var(--shadow-navbar-scrolled);
+}
+
+/* Navbar text glow */
+.navbar-text {
+    color: var(--navbar-text);
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+/* Hover underline */
+.navbar-underline {
+    background: var(--navbar-text);
+}
+
+/* ------------------------------------------
+   OPTIONAL HELPERS
+------------------------------------------- */
+
 .text-primary {
     color: var(--color-primary);
 }
@@ -92,3 +150,253 @@
     cursor: pointer;
 }
 
+/* ------------------------------------------
+   CLIENTS SECTION ANIMATIONS
+------------------------------------------- */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.7s ease-out both;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) translateX(0);
+    }
+
+    50% {
+        transform: translateY(-20px) translateX(10px);
+    }
+
+    100% {
+        transform: translateY(0) translateX(0);
+    }
+}
+
+.animate-float {
+    animation: float linear infinite;
+}
+
+/* Hide scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* ------------------------------------------
+   REVIEWS SECTION VARIABLES
+------------------------------------------- */
+
+:root {
+    /* Section background gradient */
+    --reviews-bg-gradient: linear-gradient(to bottom,
+            var(--color-bg),
+            rgba(124, 59, 237, 0.08));
+
+    /* Decorative blobs */
+    --reviews-blob-1: rgba(124, 59, 237, 0.18);
+    --reviews-blob-2: rgba(124, 59, 237, 0.22);
+
+    /* Card */
+    --reviews-card-bg: linear-gradient(to bottom right,
+            rgba(255, 255, 255, 0.95),
+            rgba(255, 255, 255, 0.85),
+            rgba(124, 59, 237, 0.06));
+    --reviews-card-border: rgba(124, 59, 237, 0.25);
+
+    /* Card hover */
+    --reviews-card-border-hover: var(--color-primary);
+    --reviews-card-shadow-hover: 0 20px 60px rgba(124, 59, 237, 0.4);
+
+    /* Text */
+    --reviews-title: var(--color-text);
+    --reviews-subtitle: rgba(25, 13, 38, 0.65);
+
+    /* Accent */
+    --reviews-accent-gradient: linear-gradient(to right,
+            transparent,
+            var(--color-primary),
+            transparent);
+
+    /* Glow */
+    --reviews-glow-gradient: linear-gradient(to bottom right,
+            rgba(124, 59, 237, 0.08),
+            transparent);
+}
+
+/* ------------------------------------------
+   DARK MODE OVERRIDES
+------------------------------------------- */
+
+.dark {
+    /* Base */
+    --color-bg: #0b0614;
+    --color-text: #f5f3ff;
+
+    /* Navbar (🔥 using purple-2) */
+    --navbar-bg: var(--purple-2);
+    --navbar-bg-scrolled: rgba(90, 24, 154, 0.65);
+    --navbar-text: #ffffff;
+    --navbar-border: rgba(255, 255, 255, 0.18);
+
+    --navbar-gradient:
+        linear-gradient(135deg,
+            rgba(255, 255, 255, 0.08),
+            rgba(255, 255, 255, 0));
+
+    --navbar-gradient-scrolled:
+        linear-gradient(135deg,
+            rgba(255, 255, 255, 0.12),
+            rgba(255, 255, 255, 0.03));
+
+    /* Shadows (stronger for dark) */
+    --shadow-navbar:
+        inset 0 1px 1px rgba(255, 255, 255, 0.12),
+        0 10px 30px rgba(0, 0, 0, 0.6);
+
+    --shadow-navbar-scrolled:
+        inset 0 1px 1px rgba(255, 255, 255, 0.18),
+        0 20px 60px rgba(0, 0, 0, 0.75);
+}
+
+/* ------------------------------------------
+   CLIENTS – DARK MODE OVERRIDES
+------------------------------------------- */
+
+.dark {
+    /* Section background */
+    --clients-bg: #0b0614;
+
+    /* Text */
+    --clients-title: #f5f3ff;
+
+    /* Cards */
+    --clients-card-bg: rgba(90, 24, 154, 0.18);
+    /* purple-2 glass */
+    --clients-card-border: rgba(255, 255, 255, 0.18);
+
+    /* Grid + particles */
+    --clients-grid: rgba(157, 75, 255, 0.25);
+}
+
+/* ------------------------------------------
+   CLIENTS – DARK MODE TOKENS
+------------------------------------------- */
+
+.dark {
+    --clients-bg: #0b0614;
+    --clients-title: #f5f3ff;
+
+    /* Glass purple cards (matches navbar) */
+    --clients-card-bg: rgba(90, 24, 154, 0.18);
+    --clients-card-border: rgba(255, 255, 255, 0.18);
+
+    --clients-grid: rgba(157, 75, 255, 0.25);
+}
+
+/* ------------------------------------------
+   REVIEWS – DARK MODE TOKENS
+------------------------------------------- */
+
+.dark {
+    /* Section background */
+    --reviews-bg-gradient: linear-gradient(to bottom,
+            #0b0614,
+            rgba(90, 24, 154, 0.25));
+
+    /* Decorative blobs */
+    --reviews-blob-1: rgba(90, 24, 154, 0.35);
+    --reviews-blob-2: rgba(157, 75, 255, 0.35);
+
+    /* Cards */
+    --reviews-card-bg: linear-gradient(to bottom right,
+            rgba(90, 24, 154, 0.35),
+            rgba(90, 24, 154, 0.25),
+            rgba(0, 0, 0, 0.35));
+
+    --reviews-card-border: rgba(255, 255, 255, 0.18);
+
+    /* Hover */
+    --reviews-card-shadow-hover: 0 25px 70px rgba(90, 24, 154, 0.6);
+
+    /* Text */
+    --reviews-title: #f5f3ff;
+    --reviews-subtitle: rgba(245, 243, 255, 0.7);
+
+    /* Accent & glow */
+    --reviews-accent-gradient: linear-gradient(to right,
+            transparent,
+            #9d4bff,
+            transparent);
+
+    --reviews-glow-gradient: linear-gradient(to bottom right,
+            rgba(157, 75, 255, 0.18),
+            transparent);
+}
+
+/* ------------------------------------------
+   SERVICES – DARK MODE TOKENS
+------------------------------------------- */
+
+.dark {
+    /* Section background */
+    --services-bg: linear-gradient(to bottom right,
+            #0b0614,
+            rgba(90, 24, 154, 0.35),
+            #0b0614);
+
+    /* Floating blobs */
+    --services-blob-1: rgba(90, 24, 154, 0.35);
+    --services-blob-2: rgba(157, 75, 255, 0.25);
+    --services-blob-3: rgba(90, 24, 154, 0.45);
+
+    /* Text */
+    --services-title: #f5f3ff;
+    --services-text: rgba(245, 243, 255, 0.75);
+
+    /* Cards (left list) */
+    --services-list-bg: rgba(90, 24, 154, 0.18);
+    --services-list-border: rgba(255, 255, 255, 0.18);
+
+    /* Stack cards */
+    --services-card-bg: linear-gradient(to bottom right,
+            rgba(90, 24, 154, 0.35),
+            rgba(0, 0, 0, 0.4));
+
+    /* Accents */
+    --services-accent: linear-gradient(to right,
+            #9d4bff,
+            #5a189a);
+}
+
+/* ------------------------------------------
+   CONTACT – DARK MODE TOKENS
+------------------------------------------- */
+
+:root {
+    --contact-bg: #f9fafb;
+    --contact-card-bg: #ffffff;
+    --contact-border: #e5e7eb;
+    --contact-title: #111827;
+    --contact-text: #4b5563;
+    --contact-input-bg: #f9fafb;
+}
+
+.dark {
+    --contact-bg: #0b0614;
+    --contact-card-bg: rgba(90, 24, 154, 0.18);
+    --contact-border: rgba(255, 255, 255, 0.18);
+    --contact-title: #f5f3ff;
+    --contact-text: rgba(245, 243, 255, 0.75);
+    --contact-input-bg: rgba(0, 0, 0, 0.35);
+}

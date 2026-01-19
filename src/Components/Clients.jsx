@@ -1,56 +1,12 @@
-import siteData from "../Constants/siteData";
-import { useState, useEffect, useRef } from "react";
 
-// // Clients Section - Tailwind v4.1 Ready
 
-// // const Clients = () => {
-// //   return (
-// //     <section className="py-20 md:py-28 bg-olive-50">
-// //       <div className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
-// //         {/* Title */}
-// //         <h2 className="text-center text-3xl md:text-4xl font-bold text-olive-800 mb-12 md:mb-20">
-// //           Worked With
-// //         </h2>
-
-// //         {/* Logo Grid */}
-// //         <div
-// //           className="
-// //           grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 
-// //           gap-6 md:gap-10 items-center
-// //         "
-// //         >
-// //           {siteData.clients.map((client) => (
-// //             <div
-// //               key={client.id}
-// //               className="
-// //                 flex items-center justify-center
-// //                 rounded-xl bg-white p-6 shadow-md
-// //                 transition-all duration-300
-// //                 hover:shadow-xl hover:scale-105
-// //               "
-// //             >
-// //               <img
-// //                 src={client.logo}
-// //                 alt={client.name}
-// //                 className="
-// //                   max-w-full h-auto opacity-70 
-// //                   transition-opacity duration-300 
-// //                   hover:opacity-100
-// //                 "
-// //               />
-// //             </div>
-// //           ))}
-// //         </div>
-// //       </div>
-// //     </section>
-// //   );
-// // };
-// // export default Clients;
+// import siteData from "../Constants/siteData";
+// import { useState } from "react";
 
 // const Clients = () => {
 //   const [hoveredId, setHoveredId] = useState(null);
 
-//   const clients = siteData.clients.slice(0, 3); // Only 3 cards
+//   const clients = siteData.clients.slice(0, 3);
 
 //   return (
 //     <section className="relative py-24 bg-gray-50 overflow-hidden">
@@ -71,7 +27,7 @@ import { useState, useEffect, useRef } from "react";
 //         {[...Array(20)].map((_, i) => (
 //           <div
 //             key={i}
-//             className="absolute w-2 h-2 bg-[var(--color-primary)] rounded-full animate-float"
+//             className="absolute w-2 h-2 rounded-full bg-[var(--color-primary)] animate-float"
 //             style={{
 //               top: `${Math.random() * 100}%`,
 //               left: `${Math.random() * 100}%`,
@@ -84,44 +40,63 @@ import { useState, useEffect, useRef } from "react";
 //       </div>
 
 //       {/* Title */}
-//       <div className="text-center mb-16 relative z-10">
+//       <div className="text-center mb-12 relative z-10">
 //         <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight">
 //           Worked With
 //         </h2>
 //       </div>
 
-//       {/* Cards */}
-//       <div className="flex justify-center gap-12 md:gap-20 relative z-10">
+//       {/* ----- MOBILE CAROUSEL ----- */}
+//       <div className="md:hidden overflow-x-auto flex gap-6 px-6 pb-4 snap-x snap-mandatory no-scrollbar relative z-10">
+//         {clients.map((client) => (
+//           <div key={client.id} className="snap-center flex-shrink-0 w-64">
+//             <div
+//               className="
+//                 relative flex items-center justify-center
+//                 rounded-3xl backdrop-blur-xl
+//                 bg-white/20 border border-white/40 shadow-lg
+//                 p-10 transition-all duration-500
+//               "
+//               style={{ minHeight: "220px" }}
+//             >
+//               <img
+//                 src={client.logo}
+//                 alt={client.name}
+//                 className="max-w-[80%] max-h-24 opacity-90 transition-all duration-500"
+//               />
+//             </div>
+//           </div>
+//         ))}
+//       </div>
+
+//       {/* ----- DESKTOP LAYOUT ----- */}
+//       <div className="hidden md:flex justify-center gap-12 md:gap-20 relative z-10">
 //         {clients.map((client, index) => {
 //           const isHovered = hoveredId === client.id;
 
 //           return (
 //             <div
 //               key={client.id}
-//               className="group relative flex-shrink-0"
+//               className="group relative flex-shrink-0 animate-fade-in-up"
 //               onMouseEnter={() => setHoveredId(client.id)}
 //               onMouseLeave={() => setHoveredId(null)}
 //               style={{
-//                 animation: `fadeInUp 0.7s ease-out ${index * 0.12}s both`,
+//                 animationDelay: `${index * 0.12}s`,
 //                 width: "260px",
 //               }}
 //             >
-//               {/* Glassmorphism Card */}
 //               <div
 //                 className={`
 //                   relative flex items-center justify-center
-//                   rounded-3xl backdrop-blur-xl
-//                   bg-white/20 border border-white/40 shadow-lg
+//                   rounded-3xl backdrop-blur-xl bg-white/20
+//                   border border-white/40 shadow-lg
 //                   p-10 transition-all duration-500
 //                   ${
 //                     isHovered ? "scale-110 shadow-2xl bg-white/30" : "scale-100"
 //                   }
 //                 `}
-//                 style={{
-//                   minHeight: "230px",
-//                 }}
+//                 style={{ minHeight: "230px" }}
 //               >
-//                 {/* Logo */}
 //                 <img
 //                   src={client.logo}
 //                   alt={client.name}
@@ -138,44 +113,39 @@ import { useState, useEffect, useRef } from "react";
 
 //       {/* Accent line */}
 //       <div className="mt-16 flex justify-center relative z-10">
-//         <div className="w-32 h-1 bg-gradient-to-r from-transparent via-[var(--color-primary)] to-transparent rounded-full"></div>
+//         <div className="w-32 h-1 rounded-full bg-gradient-to-r from-transparent via-[var(--color-primary)] to-transparent" />
 //       </div>
-
-//       <style>{`
-//         :root {
-//           --color-primary: #7c3bed;
-//           --color-primary-text: #ffffff;
-//         }
-
-//         @keyframes fadeInUp {
-//           from { opacity: 0; transform: translateY(40px); }
-//           to { opacity: 1; transform: translateY(0); }
-//         }
-
-//         @keyframes float {
-//           0% { transform: translateY(0px) translateX(0px); }
-//           50% { transform: translateY(-20px) translateX(10px); }
-//           100% { transform: translateY(0px) translateX(0px); }
-//         }
-//       `}</style>
 //     </section>
 //   );
 // };
 
+// export default Clients;
+
+
+
+
+import siteData from "../Constants/siteData";
+import { useState } from "react";
+
 const Clients = () => {
   const [hoveredId, setHoveredId] = useState(null);
 
-  const clients = siteData.clients.slice(0, 3); // 3 cards
+  const clients = siteData.clients.slice(0, 3);
 
   return (
-    <section className="relative py-24 bg-gray-50 overflow-hidden">
+    <section
+      className="relative py-24 overflow-hidden"
+      style={{
+        background: "var(--clients-bg, #f9fafb)",
+      }}
+    >
       {/* Background Grid */}
       <div
         className="absolute inset-0 opacity-10 pointer-events-none"
         style={{
           backgroundImage: `
-            linear-gradient(var(--color-primary) 1px, transparent 1px),
-            linear-gradient(90deg, var(--color-primary) 1px, transparent 1px)
+            linear-gradient(var(--clients-grid, var(--color-primary)) 1px, transparent 1px),
+            linear-gradient(90deg, var(--clients-grid, var(--color-primary)) 1px, transparent 1px)
           `,
           backgroundSize: "60px 60px",
         }}
@@ -186,8 +156,9 @@ const Clients = () => {
         {[...Array(20)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-2 h-2 bg-[var(--color-primary)] rounded-full animate-float"
+            className="absolute w-2 h-2 rounded-full animate-float"
             style={{
+              background: "var(--color-primary)",
               top: `${Math.random() * 100}%`,
               left: `${Math.random() * 100}%`,
               opacity: Math.random() * 0.4 + 0.2,
@@ -200,23 +171,26 @@ const Clients = () => {
 
       {/* Title */}
       <div className="text-center mb-12 relative z-10">
-        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight">
+        <h2
+          className="text-4xl md:text-5xl font-bold tracking-tight"
+          style={{ color: "var(--clients-title, #111827)" }}
+        >
           Worked With
         </h2>
       </div>
 
       {/* ----- MOBILE CAROUSEL ----- */}
       <div className="md:hidden overflow-x-auto flex gap-6 px-6 pb-4 snap-x snap-mandatory no-scrollbar relative z-10">
-        {clients.map((client, index) => (
+        {clients.map((client) => (
           <div key={client.id} className="snap-center flex-shrink-0 w-64">
             <div
-              className="
-                relative flex items-center justify-center
-                rounded-3xl backdrop-blur-xl
-                bg-white/20 border border-white/40 shadow-lg
-                p-10 transition-all duration-500
-              "
-              style={{ minHeight: "220px" }}
+              className="relative flex items-center justify-center rounded-3xl backdrop-blur-xl shadow-lg p-10 transition-all duration-500"
+              style={{
+                minHeight: "220px",
+                background: "var(--clients-card-bg, rgba(255,255,255,0.2))",
+                border:
+                  "1px solid var(--clients-card-border, rgba(255,255,255,0.4))",
+              }}
             >
               <img
                 src={client.logo}
@@ -228,7 +202,7 @@ const Clients = () => {
         ))}
       </div>
 
-      {/* ----- DESKTOP NORMAL LAYOUT ----- */}
+      {/* ----- DESKTOP LAYOUT ----- */}
       <div className="hidden md:flex justify-center gap-12 md:gap-20 relative z-10">
         {clients.map((client, index) => {
           const isHovered = hoveredId === client.id;
@@ -236,33 +210,31 @@ const Clients = () => {
           return (
             <div
               key={client.id}
-              className="group relative flex-shrink-0"
+              className="group relative flex-shrink-0 animate-fade-in-up"
               onMouseEnter={() => setHoveredId(client.id)}
               onMouseLeave={() => setHoveredId(null)}
               style={{
-                animation: `fadeInUp 0.7s ease-out ${index * 0.12}s both`,
+                animationDelay: `${index * 0.12}s`,
                 width: "260px",
               }}
             >
               <div
-                className={`
-                  relative flex items-center justify-center
-                  rounded-3xl backdrop-blur-xl bg-white/20 
-                  border border-white/40 shadow-lg
-                  p-10 transition-all duration-500
-                  ${
-                    isHovered ? "scale-110 shadow-2xl bg-white/30" : "scale-100"
-                  }
-                `}
-                style={{ minHeight: "230px" }}
+                className={`relative flex items-center justify-center rounded-3xl backdrop-blur-xl shadow-lg p-10 transition-all duration-500 ${
+                  isHovered ? "scale-110 shadow-2xl" : "scale-100"
+                }`}
+                style={{
+                  minHeight: "230px",
+                  background: "var(--clients-card-bg, rgba(255,255,255,0.2))",
+                  border:
+                    "1px solid var(--clients-card-border, rgba(255,255,255,0.4))",
+                }}
               >
                 <img
                   src={client.logo}
                   alt={client.name}
-                  className={`
-                    max-w-[80%] max-h-24 transition-all duration-500
-                    ${isHovered ? "scale-110 opacity-100" : "opacity-80"}
-                  `}
+                  className={`max-w-[80%] max-h-24 transition-all duration-500 ${
+                    isHovered ? "scale-110 opacity-100" : "opacity-80"
+                  }`}
                 />
               </div>
             </div>
@@ -272,39 +244,13 @@ const Clients = () => {
 
       {/* Accent line */}
       <div className="mt-16 flex justify-center relative z-10">
-        <div className="w-32 h-1 bg-gradient-to-r from-transparent via-[var(--color-primary)] to-transparent rounded-full"></div>
+        <div className="w-32 h-1 rounded-full bg-gradient-to-r from-transparent via-[var(--color-primary)] to-transparent" />
       </div>
-
-      <style>{`
-        :root {
-          --color-primary: #7c3bed;
-        }
-
-        @keyframes fadeInUp {
-          from { opacity: 0; transform: translateY(40px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes float {
-          0% { transform: translateY(0px) translateX(0px); }
-          50% { transform: translateY(-20px) translateX(10px); }
-          100% { transform: translateY(0px) translateX(0px); }
-        }
-
-        .no-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
-      `}</style>
     </section>
   );
 };
 
-
 export default Clients;
-
-
-
-
 
 
 
