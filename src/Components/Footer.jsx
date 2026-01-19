@@ -8,8 +8,8 @@ const container = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.15 }
-  }
+    transition: { staggerChildren: 0.15 },
+  },
 };
 
 const item = {
@@ -17,8 +17,8 @@ const item = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { type: "spring", stiffness: 80 }
-  }
+    transition: { type: "spring", stiffness: 80 },
+  },
 };
 
 const Footer = () => {
@@ -30,44 +30,36 @@ const Footer = () => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
-      className={`relative transition-colors duration-500 ${darkMode
-          ? "bg-gray-900"
-          : "bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900"
-        }`}
+      className="
+    relative transition-colors duration-500
+    bg-gradient-to-br from-gray-50 via-white to-gray-100
+    dark:bg-gradient-to-br dark:from-black dark:via-gray-950 dark:to-black
+  "
     >
-      {/* Dark Mode Toggle */}
-      {/* <motion.button
-        onClick={() => setDarkMode(!darkMode)}
-        className="fixed bottom-4 right-4 z-50 p-3 rounded-full shadow-lg"
-        style={{ backgroundColor: PRIMARY }}
-        whileHover={{ scale: 1.1, rotate: 180 }}
-        whileTap={{ scale: 0.9 }}
-      >
-        {darkMode ? (
-          <Sun className="text-white" size={20} />
-        ) : (
-          <Moon className="text-white" size={20} />
-        )}
-      </motion.button> */}
-
       {/* Footer Content */}
       <div className="max-w-6xl mx-auto px-4 py-8 sm:py-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
           {/* Company Info */}
           <motion.div variants={item}>
-            <h2 className="text-2xl font-bold text-white mb-3">
+            <h2 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white">
               Soul<span style={{ color: PRIMARY }}>Techies</span>
             </h2>
-            <p className="text-gray-400 text-sm leading-relaxed max-w-md">
+
+            <p className="text-sm leading-relaxed max-w-md text-gray-600 dark:text-gray-400">
               Transforming ideas into digital reality with clean, scalable and
               innovative solutions.
             </p>
+
             {/* Book Now CTA */}
             <motion.a
               href="#contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-2 mt-5 px-5 py-2.5 rounded-xl text-sm font-semibold text-white shadow-md"
+              className="
+            inline-flex items-center gap-2 mt-5 px-5 py-2.5 rounded-xl
+            text-sm font-semibold text-white shadow-md
+            shadow-violet-300/40 dark:shadow-violet-900/40
+          "
               style={{ backgroundColor: PRIMARY }}
             >
               <Calendar size={16} />
@@ -80,7 +72,11 @@ const Footer = () => {
             <motion.a
               whileHover={{ x: 5 }}
               href="mailto:soulte3h@gmail.com"
-              className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors"
+              className="
+            flex items-center gap-3 transition-colors
+            text-gray-600 hover:text-gray-900
+            dark:text-gray-400 dark:hover:text-white
+          "
             >
               <div
                 className="w-9 h-9 rounded-lg flex items-center justify-center"
@@ -93,8 +89,12 @@ const Footer = () => {
 
             <motion.a
               whileHover={{ x: 5 }}
-              href="tel:+15551234567"
-              className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors"
+              href="tel:+916289549477"
+              className="
+            flex items-center gap-3 transition-colors
+            text-gray-600 hover:text-gray-900
+            dark:text-gray-400 dark:hover:text-white
+          "
             >
               <div
                 className="w-9 h-9 rounded-lg flex items-center justify-center"
@@ -107,7 +107,7 @@ const Footer = () => {
 
             <motion.div
               whileHover={{ x: 5 }}
-              className="flex items-center gap-3 text-gray-400"
+              className="flex items-center gap-3 text-gray-600 dark:text-gray-400"
             >
               <div
                 className="w-9 h-9 rounded-lg flex items-center justify-center"
@@ -115,9 +115,7 @@ const Footer = () => {
               >
                 <MapPin size={16} style={{ color: PRIMARY }} />
               </div>
-              <span className="text-sm">
-                 Kolkata, West Bengal
-              </span>
+              <span className="text-sm">Kolkata, West Bengal</span>
             </motion.div>
           </motion.div>
         </div>
@@ -125,18 +123,26 @@ const Footer = () => {
         {/* Divider */}
         <motion.div
           variants={item}
-          className="border-t border-white/10 mt-8 pt-5 text-center"
+          className="
+        border-t mt-8 pt-5 text-center
+        border-gray-200 dark:border-white/10
+      "
         >
-          <p className="text-gray-500 text-xs sm:text-sm">
+          <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-500">
             © {new Date().getFullYear()} SoulTechies. All rights reserved.
           </p>
-
-
         </motion.div>
       </div>
 
       {/* Bottom Glow Line */}
-      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-40" />
+      <div
+        className="
+      absolute bottom-0 left-0 w-full h-px
+      bg-gradient-to-r from-transparent via-purple-400 to-transparent
+      dark:via-purple-600
+      opacity-40
+    "
+      />
     </motion.footer>
   );
 };

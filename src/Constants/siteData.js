@@ -136,6 +136,7 @@
 import goputoLogo from "../assets/images/goputo.jpg";
 import HopzyLogo from "../assets/images/hopzy.png";
 import SolonoLogo from "../assets/images/solono.png";
+import HopzyWhiteLogo from "../assets/images/Hopzywhitelogohtpl.png";
 
 const siteData = {
   brand: {
@@ -175,25 +176,25 @@ const siteData = {
     },
   ],
 
-  
-
   clients: [
     {
       id: 1,
       name: "Goputo",
       logo: goputoLogo,
+      darkLogo: goputoLogo,
     },
     {
       id: 2,
       name: "Hopzy",
       logo: HopzyLogo,
+      darkLogo: HopzyWhiteLogo,
     },
     {
       id: 3,
       name: "Solono",
       logo: SolonoLogo,
+      darkLogo: SolonoLogo,
     },
-    
   ],
 
   reviews: [
@@ -224,11 +225,11 @@ const siteData = {
     {
       id: 4,
       name: "David Lee",
-      company: "DevSphere", 
+      company: "DevSphere",
       logo: "https://via.placeholder.com/50/4a5a4a/ffffff?text=DS",
       rating: 5,
-      text: "Working with SoulTech was a game-changer for our project. Their team is highly skilled and delivered beyond our expectations.",  
-    }
+      text: "Working with SoulTech was a game-changer for our project. Their team is highly skilled and delivered beyond our expectations.",
+    },
   ],
 
   contact: {

@@ -36,7 +36,7 @@ const CardSwap = ({
 }) => {
   const childArr = useMemo(() => Children.toArray(children), [children]);
   const [order, setOrder] = useState(
-    Array.from({ length: childArr.length }, (_, i) => i)
+    Array.from({ length: childArr.length }, (_, i) => i),
   );
   const container = useRef(null);
 
@@ -80,7 +80,7 @@ const CardSwap = ({
             onCardClick?.(i);
           },
         })
-      : child
+      : child,
   );
 
   return (
@@ -114,10 +114,20 @@ const ServicesSection = () => {
   }, [siteData.services.length]);
 
   return (
-    <div  id="services" className="min-h-screen bg-gradient-to-br from-violet-50 via-white to-violet-100 flex items-center justify-center p-8 md:p-20 relative overflow-hidden">
+    <div
+      id="services"
+      className="
+    min-h-screen flex items-center justify-center relative overflow-hidden
+    p-8 md:p-20
+    bg-gradient-to-br
+    from-violet-50 via-white to-violet-100
+    dark:from-slate-950 dark:via-slate-900 dark:to-violet-950
+    transition-colors duration-500
+  "
+    >
       {/* Decorative background elements with smooth animations */}
       <motion.div
-        className="absolute top-20 left-20 w-72 h-72 bg-violet-200 rounded-full mix-blend-multiply filter blur-xl opacity-30"
+        className="absolute top-20 left-20 w-72 h-72 rounded-full bg-violet-200 dark:bg-violet-900 mix-blend-multiply dark:mix-blend-screen filter blur-xl opacity-30 dark:opacity-20 transition-colors duration-500"
         animate={{
           scale: [1, 1.2, 1],
           rotate: [0, 90, 0],
@@ -128,8 +138,9 @@ const ServicesSection = () => {
           ease: "linear",
         }}
       />
+
       <motion.div
-        className="absolute bottom-20 right-20 w-96 h-96 bg-violet-300 rounded-full mix-blend-multiply filter blur-xl opacity-20"
+        className="absolute bottom-20 right-20 w-96 h-96 rounded-full bg-violet-300 dark:bg-violet-950 mix-blend-multiply dark:mix-blend-screen  filter blur-xl opacity-20 dark:opacity-15 transition-colors duration-500"
         animate={{
           scale: [1.2, 1, 1.2],
           rotate: [90, 0, 90],
@@ -143,7 +154,8 @@ const ServicesSection = () => {
 
       {/* Additional animated blobs for more depth */}
       <motion.div
-        className="absolute top-1/2 left-1/3 w-64 h-64 bg-violet-300 rounded-full mix-blend-multiply filter blur-2xl opacity-40"
+        className="
+    absolute top-1/2 left-1/3 w-64 h-64 rounded-full  bg-violet-300 dark:bg-violet-900 mix-blend-multiply dark:mix-blend-screen filter blur-2xl opacity-40 dark:opacity-20 transition-colors duration-500"
         animate={{
           x: [0, 100, 0],
           y: [0, -50, 0],
@@ -165,22 +177,38 @@ const ServicesSection = () => {
             transition={{ duration: 0.8 }}
             className="space-y-8 z-10"
           >
+            {/* Heading */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
             >
-              <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4">
+              <h2
+                className="
+        text-5xl md:text-6xl font-bold mb-4
+        text-gray-900 dark:text-slate-100
+      "
+              >
                 Our Services
               </h2>
-              <div className="h-1.5 w-24 bg-gradient-to-r from-violet-500 to-violet-300 rounded-full" />
+              <div
+                className="
+        h-1.5 w-24 rounded-full
+        bg-gradient-to-r from-violet-500 to-violet-300
+        dark:from-violet-400 dark:to-violet-600
+      "
+              />
             </motion.div>
 
+            {/* Description */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className="text-xl text-gray-700 leading-relaxed"
+              className="
+      text-xl leading-relaxed
+      text-gray-700 dark:text-slate-400
+    "
             >
               We transform ideas into exceptional digital experiences. Our
               comprehensive services cover everything from development to
@@ -203,20 +231,46 @@ const ServicesSection = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.8 + index * 0.2, duration: 0.5 }}
                     whileHover={{ x: 10 }}
-                    className="flex items-start space-x-4 p-5 rounded-xl bg-white/50 backdrop-blur-sm border border-violet-100 shadow-sm hover:shadow-md transition-all duration-300"
+                    className="
+            flex items-start space-x-4 p-5 rounded-xl
+            bg-white/50 dark:bg-slate-900/60
+            backdrop-blur-sm
+            border border-violet-100 dark:border-slate-800
+            shadow-sm dark:shadow-violet-900/20
+            hover:shadow-md dark:hover:shadow-violet-800/30
+            transition-all duration-300
+          "
                   >
                     <motion.div
                       whileHover={{ rotate: 360 }}
                       transition={{ duration: 0.6 }}
-                      className="flex-shrink-0 w-12 h-12 rounded-lg bg-gradient-to-br from-violet-500 to-violet-400 flex items-center justify-center shadow-lg"
+                      className="
+              flex-shrink-0 w-12 h-12 rounded-lg
+              bg-gradient-to-br from-violet-500 to-violet-400
+              dark:from-violet-600 dark:to-indigo-600
+              flex items-center justify-center
+              shadow-lg shadow-violet-300/40
+              dark:shadow-violet-900/40
+            "
                     >
                       <IconComponent className="text-white text-xl" />
                     </motion.div>
+
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-1">
+                      <h3
+                        className="
+                text-lg font-semibold mb-1
+                text-gray-900 dark:text-slate-100
+              "
+                      >
                         {service.title}
                       </h3>
-                      <p className="text-gray-600 text-sm leading-relaxed">
+                      <p
+                        className="
+                text-sm leading-relaxed
+                text-gray-600 dark:text-slate-400
+              "
+                      >
                         {service.description}
                       </p>
                     </div>
@@ -231,7 +285,7 @@ const ServicesSection = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.4, duration: 0.8 }}
-            className="hidden md:block relative h-[600px] "
+            className="hidden md:block relative h-[600px]"
           >
             <CardSwap
               width={450}
@@ -244,22 +298,55 @@ const ServicesSection = () => {
                 const IconComponent = iconMap[service.icon];
                 return (
                   <Card key={service.id}>
-                    <div className="w-full h-full p-8 flex flex-col justify-center items-center text-center space-y-6 bg-gradient-to-br from-white to-violet-50">
+                    <div
+                      className="
+              w-full h-full p-8 flex flex-col justify-center items-center
+              text-center space-y-6
+              bg-gradient-to-br from-white to-violet-50
+              dark:from-slate-900 dark:to-slate-800
+              border border-transparent dark:border-slate-800
+              transition-colors duration-500
+            "
+                    >
                       <motion.div
                         whileHover={{ scale: 1.1, rotate: 5 }}
-                        className="w-20 h-20 rounded-2xl bg-gradient-to-br from-violet-500 to-violet-400 flex items-center justify-center shadow-xl"
+                        className="
+                w-20 h-20 rounded-2xl
+                bg-gradient-to-br from-violet-500 to-violet-400
+                dark:from-violet-600 dark:to-indigo-600
+                flex items-center justify-center
+                shadow-xl shadow-violet-300/40
+                dark:shadow-violet-900/40
+              "
                       >
                         <IconComponent className="text-white text-4xl" />
                       </motion.div>
-                      <h3 className="text-2xl font-bold text-gray-900">
+
+                      <h3
+                        className="
+                text-2xl font-bold
+                text-gray-900 dark:text-slate-100
+              "
+                      >
                         {service.title}
                       </h3>
-                      <p className="text-gray-700 leading-relaxed text-base">
+
+                      <p
+                        className="
+                leading-relaxed text-base
+                text-gray-700 dark:text-slate-400
+              "
+                      >
                         {service.description}
                       </p>
+
                       <motion.div
                         whileHover={{ scale: 1.1 }}
-                        className="w-12 h-1 bg-gradient-to-r from-violet-500 to-violet-300 rounded-full"
+                        className="
+                w-12 h-1 rounded-full
+                bg-gradient-to-r from-violet-500 to-violet-300
+                dark:from-violet-400 dark:to-indigo-400
+              "
                       />
                     </div>
                   </Card>

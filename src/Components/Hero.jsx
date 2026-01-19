@@ -28,7 +28,7 @@ const animateDot = (
   pushX,
   pushY,
   resistance = 750,
-  returnDuration = 1500
+  returnDuration = 1500,
 ) => {
   const startTime = performance.now();
   const startX = dot.xOffset;
@@ -295,7 +295,16 @@ const DotGrid = ({
 
 export default function HeroSection() {
   return (
-    <div id="home" className="relative min-h-screen bg-gradient-to-br from-slate-50 via-violet-50 to-slate-50 overflow-hidden flex items-center justify-center">
+    <div
+      id="home"
+      className="
+    relative min-h-screen overflow-hidden flex items-center justify-center
+    bg-gradient-to-br 
+    from-slate-50 via-violet-50 to-slate-50
+    dark:from-slate-950 dark:via-slate-900 dark:to-slate-950
+    transition-colors duration-500
+  "
+    >
       {/* Interactive Dot Grid Background */}
       <DotGrid
         dotSize={9}
@@ -320,9 +329,21 @@ export default function HeroSection() {
             animationDuration: "800ms",
           }}
         >
-          <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-slate-900 mb-6 tracking-tight">
+          <h1
+            className="
+        text-6xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight
+        text-slate-900 dark:text-slate-100
+      "
+          >
             <span className="inline-block">Build.</span>{" "}
-            <span className="inline-block bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent">
+            <span
+              className="
+          inline-block bg-gradient-to-r 
+          from-violet-600 to-indigo-600
+          dark:from-violet-400 dark:to-indigo-400
+          bg-clip-text text-transparent
+        "
+            >
               Transform.
             </span>{" "}
             <span className="inline-block">Innovate.</span>
@@ -330,7 +351,11 @@ export default function HeroSection() {
         </div>
 
         <p
-          className="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed mb-8 animate-fade-in opacity-0"
+          className="
+      text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed mb-8
+      text-slate-600 dark:text-slate-400
+      animate-fade-in opacity-0
+    "
           style={{
             animationDelay: "500ms",
             animationFillMode: "forwards",
@@ -349,10 +374,32 @@ export default function HeroSection() {
             animationDuration: "800ms",
           }}
         >
-          <button className="px-8 py-4 bg-violet-600 text-white rounded-lg font-semibold hover:bg-violet-700 transition-all duration-300 shadow-lg shadow-violet-200 hover:scale-105">
+          <button
+            className="
+        px-8 py-4 rounded-lg font-semibold
+        bg-violet-600 hover:bg-violet-700
+        dark:bg-violet-500 dark:hover:bg-violet-600
+        text-white
+        transition-all duration-300
+        shadow-lg shadow-violet-200/40
+        dark:shadow-violet-900/40
+        hover:scale-105
+      "
+          >
             Get Started
           </button>
-          <button className="px-8 py-4 bg-white text-slate-900 rounded-lg font-semibold hover:bg-slate-100 transition-all duration-300 border-2 border-slate-200 hover:scale-105">
+
+          <button
+            className="
+        px-8 py-4 rounded-lg font-semibold
+        bg-white hover:bg-slate-100
+        dark:bg-slate-900 dark:hover:bg-slate-800
+        text-slate-900 dark:text-slate-100
+        border-2 border-slate-200 dark:border-slate-700
+        transition-all duration-300
+        hover:scale-105
+      "
+          >
             Learn More
           </button>
         </div>

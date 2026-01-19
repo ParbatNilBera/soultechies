@@ -1,11 +1,7 @@
-
-
-
 // import { useState, useEffect } from "react";
 // import { motion, AnimatePresence } from "framer-motion";
 // import { Link } from "react-router-dom";
 // import logo from "../assets/images/loogo.png";
-
 
 // const Navbar = () => {
 //   const [open, setOpen] = useState(false);
@@ -175,25 +171,52 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  /* ---------------- DARK MODE INIT ---------------- */
+  /* ---------------- DARK MODE INIT + SYNC ---------------- */
   useEffect(() => {
-    const theme = localStorage.getItem("theme");
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-      setDarkMode(true);
+    const root = document.documentElement;
+
+    // 1️⃣ Initial theme (localStorage → system → default)
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme === "dark") {
+      root.classList.add("dark");
+    } else if (savedTheme === "light") {
+      root.classList.remove("dark");
+    } else {
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
+      root.classList.toggle("dark", prefersDark);
     }
+
+    // 2️⃣ Sync React state with actual DOM state
+    const syncDarkMode = () => {
+      setDarkMode(root.classList.contains("dark"));
+    };
+
+    syncDarkMode();
+
+    // 3️⃣ Observe class changes (prevents desync bugs)
+    const observer = new MutationObserver(syncDarkMode);
+    observer.observe(root, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   /* ---------------- TOGGLE DARK MODE ---------------- */
   const toggleDarkMode = () => {
-    const html = document.documentElement;
-    const isDark = html.classList.contains("dark");
+    const root = document.documentElement;
+    const isDark = root.classList.contains("dark");
 
-    html.classList.toggle("dark");
+    root.classList.toggle("dark", !isDark);
     localStorage.setItem("theme", isDark ? "light" : "dark");
-    setDarkMode(!isDark);
+    // ❌ do NOT manually setDarkMode here — observer handles it
   };
 
+  /* ---------------- SCROLL TO SECTION ---------------- */
   const scrollToSection = (id) => {
     setOpen(false);
     const el = document.getElementById(id);

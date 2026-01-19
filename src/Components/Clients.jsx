@@ -1,5 +1,3 @@
-
-
 // import siteData from "../Constants/siteData";
 // import { useState } from "react";
 
@@ -121,9 +119,6 @@
 
 // export default Clients;
 
-
-
-
 import siteData from "../Constants/siteData";
 import { useState } from "react";
 
@@ -192,10 +187,24 @@ const Clients = () => {
                   "1px solid var(--clients-card-border, rgba(255,255,255,0.4))",
               }}
             >
+              {/* Light logo */}
               <img
                 src={client.logo}
                 alt={client.name}
-                className="max-w-[80%] max-h-24 opacity-90 transition-all duration-500"
+                className="
+          max-w-[80%] max-h-24 opacity-90 transition-all duration-500
+          block dark:hidden
+        "
+              />
+
+              {/* Dark logo */}
+              <img
+                src={client.darkLogo}
+                alt={client.name}
+                className="
+          max-w-[80%] max-h-24 opacity-90 transition-all duration-500
+          hidden dark:block absolute
+        "
               />
             </div>
           </div>
@@ -229,12 +238,26 @@ const Clients = () => {
                     "1px solid var(--clients-card-border, rgba(255,255,255,0.4))",
                 }}
               >
+                {/* Light logo */}
                 <img
                   src={client.logo}
                   alt={client.name}
-                  className={`max-w-[80%] max-h-24 transition-all duration-500 ${
-                    isHovered ? "scale-110 opacity-100" : "opacity-80"
-                  }`}
+                  className={`
+            max-w-[80%] max-h-24 transition-all duration-500
+            block dark:hidden
+            ${isHovered ? "scale-110 opacity-100" : "opacity-80"}
+          `}
+                />
+
+                {/* Dark logo */}
+                <img
+                  src={client.darkLogo}
+                  alt={client.name}
+                  className={`
+            max-w-[80%] max-h-24 transition-all duration-500
+            hidden dark:block absolute
+            ${isHovered ? "scale-110 opacity-100" : "opacity-80"}
+          `}
                 />
               </div>
             </div>
@@ -251,7 +274,3 @@ const Clients = () => {
 };
 
 export default Clients;
-
-
-
-
