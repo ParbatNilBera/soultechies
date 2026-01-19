@@ -8,6 +8,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import HomePage from "../HomePage";
+console.log(" Welcome To Soultechies");
 
 const AppRoutes = () => {
   return (
