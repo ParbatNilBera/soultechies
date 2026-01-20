@@ -8,7 +8,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import HomePage from "../HomePage";
-import Error404 from "../Components/Common/error404";
+import Error404 from "../Components/Common/Error404";
 console.log(" Welcome To Soultechies");
 
 const AppRoutes = () => {
