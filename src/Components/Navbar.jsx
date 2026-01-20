@@ -1,158 +1,3 @@
-// import { useState, useEffect } from "react";
-// import { motion, AnimatePresence } from "framer-motion";
-// import { Link } from "react-router-dom";
-// import logo from "../assets/images/loogo.png";
-
-// const Navbar = () => {
-//   const [open, setOpen] = useState(false);
-//   const [scrolled, setScrolled] = useState(false);
-
-//   useEffect(() => {
-//     const onScroll = () => setScrolled(window.scrollY > 40);
-//     window.addEventListener("scroll", onScroll);
-//     return () => window.removeEventListener("scroll", onScroll);
-//   }, []);
-
-//   const scrollToSection = (id) => {
-//     setOpen(false);
-//     const el = document.getElementById(id);
-//     if (!el) return;
-
-//     const offset = 90;
-//     const y = el.getBoundingClientRect().top + window.pageYOffset - offset;
-
-//     window.scrollTo({ top: y, behavior: "smooth" });
-//   };
-
-//   return (
-//     <nav className="fixed top-0 w-full z-50 flex justify-around mt-1 px-1">
-//       <motion.div
-//         animate={{
-//           width: scrolled ? "80%" : "100%",
-//           borderRadius: scrolled ? "40px" : "150px 100px 777px 150px",
-//           paddingTop: scrolled ? "12px" : "16px",
-//           paddingBottom: scrolled ? "12px" : "16px",
-//           y: scrolled ? -4 : 0,
-//           scale: scrolled ? 0.97 : 1,
-//         }}
-//         transition={{
-//           type: "spring",
-//           stiffness: 90,
-//           damping: 26,
-//           mass: 1.1,
-//         }}
-//         className={`px-6 navbar ${scrolled ? "navbar-scrolled" : ""}`}
-//       >
-//         {/* Navbar content */}
-//         <div className="flex justify-between items-center p-3">
-//           {/* Logo */}
-//           {/* <h1 className="navbar-text text-xl md:text-3xl font-semibold tracking-wide">
-//             SoulTechies
-//           </h1> */}
-
-//           <Link to="/" className="flex items-center gap-2">
-//             <img
-//               src={logo}
-//               alt="SoulTechies Logo"
-//               className="h-14 w-14 md:h-12 md:w-12 object-contain"
-//             />
-//             <span className="navbar-text text-xl md:text-3xl font-semibold tracking-wide">
-//               SoulTechies
-//             </span>
-//           </Link>
-
-//           {/* Desktop Menu */}
-//           <div className="hidden md:flex gap-8 navbar-text">
-//             {[
-//               { label: "Home", id: "home" },
-//               { label: "Reviews", id: "reviews" },
-//               { label: "Services", id: "services" },
-//             ].map((item) => (
-//               <motion.button
-//                 key={item.id}
-//                 onClick={() => scrollToSection(item.id)}
-//                 whileHover={{ y: -2, scale: 1.1 }}
-//                 whileTap={{ scale: 0.97 }}
-//                 transition={{
-//                   type: "spring",
-//                   stiffness: 300,
-//                   damping: 18,
-//                 }}
-//                 className="relative bg-transparent font-medium tracking-wide"
-//               >
-//                 {item.label}
-
-//                 <motion.span
-//                   className="navbar-underline absolute left-0 -bottom-1 w-full h-[2px] rounded-full"
-//                   initial={{ scaleX: 0, opacity: 0 }}
-//                   whileHover={{ scaleX: 1, opacity: 1 }}
-//                   transition={{ duration: 0.25 }}
-//                   style={{ originX: 0 }}
-//                 />
-//               </motion.button>
-//             ))}
-//           </div>
-
-//           {/* Mobile Menu Button */}
-//           <button
-//             className="md:hidden navbar-text"
-//             onClick={() => setOpen(!open)}
-//           >
-//             {!open ? (
-//               <svg width="26" height="26" viewBox="0 0 24 24">
-//                 <path
-//                   d="M3 6h18M3 12h18M3 18h18"
-//                   stroke="currentColor"
-//                   strokeWidth="2"
-//                   strokeLinecap="round"
-//                 />
-//               </svg>
-//             ) : (
-//               <svg width="26" height="26" viewBox="0 0 24 24">
-//                 <path
-//                   d="M6 6l12 12M6 18L18 6"
-//                   stroke="currentColor"
-//                   strokeWidth="2"
-//                   strokeLinecap="round"
-//                 />
-//               </svg>
-//             )}
-//           </button>
-//         </div>
-//       </motion.div>
-
-//       {/* Mobile Menu */}
-//       <AnimatePresence>
-//         {open && (
-//           <motion.div
-//             initial={{ opacity: 0, y: -8 }}
-//             animate={{ opacity: 1, y: 0 }}
-//             exit={{ opacity: 0, y: -8 }}
-//             className="absolute top-20 w-[90%] rounded-2xl py-4 md:hidden shadow-xl bg-primary"
-//           >
-//             {[
-//               { label: "Home", id: "home" },
-//               { label: "Services", id: "services" },
-//               { label: "Projects", id: "projects" },
-//             ].map((item) => (
-//               <motion.button
-//                 key={item.id}
-//                 onClick={() => scrollToSection(item.id)}
-//                 whileHover={{ x: 6 }}
-//                 whileTap={{ scale: 0.97 }}
-//                 className="block w-full text-left text-lg px-6 py-3 rounded-xl text-white"
-//               >
-//                 {item.label}
-//               </motion.button>
-//             ))}
-//           </motion.div>
-//         )}
-//       </AnimatePresence>
-//     </nav>
-//   );
-// };
-
-// export default Navbar;
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -228,7 +73,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 w-full z-50 flex justify-around mt-1 px-1">
+    <nav className="fixed top-0 w-full z-50 flex justify-center mt-1 px-2 sm:px-4">
       <motion.div
         animate={{
           width: scrolled ? "80%" : "100%",
@@ -339,7 +184,14 @@ const Navbar = () => {
               </AnimatePresence>
             </button>
 
-            <button onClick={() => setOpen(!open)}>{!open ? "☰" : "✕"}</button>
+            <button
+              onClick={() => setOpen(!open)}
+              className="w-10 h-10 flex items-center justify-center
+             rounded-full bg-white/20 backdrop-blur-md
+             hover:bg-white/30 transition"
+            >
+              {!open ? "☰" : "✕"}
+            </button>
           </div>
         </div>
       </motion.div>
@@ -348,18 +200,25 @@ const Navbar = () => {
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            className="absolute top-20 w-[90%] rounded-2xl py-4 md:hidden
-                       shadow-xl bg-primary"
+            initial={{ opacity: 0, y: -20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.95 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
+              className="absolute top-20 w-[92%] rounded-2xl py-4 md:hidden
+             shadow-2xl
+             bg-primary/55 dark:bg-primary/25
+             backdrop-blur-xl backdrop-saturate-150
+             border border-primary/30 dark:border-primary/40"
+            
           >
             {["Home", "Services", "Projects"].map((item) => (
               <motion.button
                 key={item}
                 onClick={() => scrollToSection(item.toLowerCase())}
                 whileHover={{ x: 6 }}
-                className="block w-full text-left px-6 py-3 text-white"
+                className="block w-full text-left px-6 py-4
+           text-white text-lg font-medium
+           hover:bg-white/10 transition rounded-xl"
               >
                 {item}
               </motion.button>
