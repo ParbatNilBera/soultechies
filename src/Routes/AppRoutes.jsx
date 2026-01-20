@@ -8,6 +8,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import HomePage from "../HomePage";
+import Error404 from "../Components/Common/error404";
 console.log(" Welcome To Soultechies");
 
 const AppRoutes = () => {
@@ -16,6 +17,7 @@ const AppRoutes = () => {
       <Router>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="*" element={<Error404 />} />
         </Routes>
       </Router>
     </div>
