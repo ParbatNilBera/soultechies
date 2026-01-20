@@ -80,8 +80,10 @@ const Navbar = () => {
           borderRadius: scrolled ? "40px" : "150px 100px 777px 150px",
           paddingTop: scrolled ? "12px" : "16px",
           paddingBottom: scrolled ? "12px" : "16px",
-          y: scrolled ? -4 : 0,
-          scale: scrolled ? 0.97 : 1,
+          // y: scrolled ? -4 : 0,
+          // scale: scrolled ? 0.97 : 1,
+          width: "92%",
+          scale: 1,
         }}
         transition={{
           type: "spring",
@@ -89,7 +91,7 @@ const Navbar = () => {
           damping: 26,
           mass: 1.1,
         }}
-        className={`px-6 navbar ${scrolled ? "navbar-scrolled" : ""}`}
+        className={`px-6 sm:px-6 navbar ${scrolled ? "navbar-scrolled" : ""}`}
       >
         <div className="flex justify-between items-center p-3">
           {/* LOGO */}
@@ -204,12 +206,11 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-              className="absolute top-20 w-[92%] rounded-2xl py-4 md:hidden
+            className="absolute top-20 w-[92%] rounded-2xl py-4 md:hidden
              shadow-2xl
              bg-primary/55 dark:bg-primary/25
              backdrop-blur-xl backdrop-saturate-150
              border border-primary/30 dark:border-primary/40"
-            
           >
             {["Home", "Services", "Projects"].map((item) => (
               <motion.button
