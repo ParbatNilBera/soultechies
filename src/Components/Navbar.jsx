@@ -76,13 +76,20 @@ const Navbar = () => {
     <nav className="fixed top-0 w-full z-50 flex justify-center mt-1 px-2 sm:px-4">
       <motion.div
         animate={{
-          width: scrolled ? "80%" : "100%",
-          borderRadius: scrolled ? "40px" : "150px 100px 777px 150px",
+          // width: scrolled ? "80%" : "100%",
+          width: "100%",
+
+          // borderRadius: scrolled ? "40px" : "150px 100px 777px 150px",
+          borderRadius: scrolled
+            ? "40px"
+            : window.innerWidth < 768
+              ? "32px"
+              : "150px 100px 777px 150px",
+
           paddingTop: scrolled ? "12px" : "16px",
           paddingBottom: scrolled ? "12px" : "16px",
           y: scrolled ? -4 : 0,
           scale: scrolled ? 0.97 : 1,
-          
         }}
         transition={{
           type: "spring",
