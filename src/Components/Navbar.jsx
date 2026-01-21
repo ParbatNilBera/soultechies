@@ -80,10 +80,9 @@ const Navbar = () => {
           borderRadius: scrolled ? "40px" : "150px 100px 777px 150px",
           paddingTop: scrolled ? "12px" : "16px",
           paddingBottom: scrolled ? "12px" : "16px",
-          // y: scrolled ? -4 : 0,
-          // scale: scrolled ? 0.97 : 1,
-          width: "92%",
-          scale: 1,
+          y: scrolled ? -4 : 0,
+          scale: scrolled ? 0.97 : 1,
+          
         }}
         transition={{
           type: "spring",
@@ -96,7 +95,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center p-3">
           {/* LOGO */}
           <Link to="/" className="flex items-center gap-2">
-            <img src={logo} alt="SoulTechies Logo" className="h-14 w-14" />
+            {/* <img src={logo} alt="SoulTechies Logo" className="h-14 w-14" /> */}
             <span className="navbar-text text-xl md:text-3xl font-semibold">
               SoulTechies
             </span>
